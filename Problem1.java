@@ -6,24 +6,20 @@
 
 // Your code here along with comments explaining your approach
 /*
-Create a dummy node and point slow and fast pointer to this node
-for given n move the fast by one until count reaches n so that fast is always ahead of the node to be removed
-Move the slow pointer by 1 such that slow is one node behind the node to be removed
-with a help of temp node delete the nth node
+Using two pointers current and previous we achieve this
+Current points to head node and previous initially to null
+We traverse until current is null and with temp node we reverse the linked list
 */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        return helper(head, null);
-        
-    }
-    private ListNode helper(ListNode curr, ListNode prev) {
-        //base
-        if(curr == null) return prev;
-        //logic
-        ListNode temp = curr.next;
-        curr.next = prev;
-        prev = curr;
-        curr = temp;
-        return helper(curr, prev);
+        ListNode curr = head;
+        ListNode prev = null;
+        while(curr != null) {
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev; 
     }
 }
